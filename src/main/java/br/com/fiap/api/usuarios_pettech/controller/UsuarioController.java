@@ -3,6 +3,7 @@ package br.com.fiap.api.usuarios_pettech.controller;
 import br.com.fiap.api.usuarios_pettech.dto.UsuarioDTO;
 import br.com.fiap.api.usuarios_pettech.service.UsuarioService;
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +34,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioDTO);
     }
     @PostMapping
-    public ResponseEntity<UsuarioDTO> save(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<UsuarioDTO> save(@Valid @RequestBody UsuarioDTO usuarioDTO){
         UsuarioDTO savedUsuario = usuarioService.save(usuarioDTO);
         return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
     }
